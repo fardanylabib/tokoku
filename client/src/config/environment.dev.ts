@@ -2,7 +2,7 @@ import { LanguageType } from 'store/reducers/locale/langugeType'
 
 export const environment = {
   ecommerce: {
-      baseURL: 'https://ipragmatech-ecommmerce.herokuapp.com/api/'
+      baseURL: 'http://localhost:3000/api/'
   },
   settings: {
     enabledOAuthLogin: false,

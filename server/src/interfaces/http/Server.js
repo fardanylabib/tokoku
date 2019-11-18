@@ -12,6 +12,7 @@ class Server {
     this.express = express();
     this.express.use(paginate.middleware(10, 50));
     this.express.disable('x-powered-by');
+    // this.express.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');
 
     this.express.use(bodyParser.urlencoded({ extended: false }));
     this.express.use(bodyParser.json());

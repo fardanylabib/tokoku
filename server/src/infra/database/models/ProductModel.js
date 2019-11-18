@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  const Product = sequelize.define(
+  const ProductModel = sequelize.define(
     "product",
     {
       product_id: {
@@ -77,12 +77,13 @@ module.exports = function(sequelize, DataTypes) {
           return count;
         },
         getAllProductsByCategory: function(category, page, limit, offset) {
+          console.log('ini ada fungsiny');
           const products = sequelize.query(
             "CALL catalog_get_products_in_category(:inCategoryId, :inShortProductDescriptionLength, :inProductsPerPage, :inStartItem);",
             {
               replacements: {
                 inCategoryId: category,
-                inShortProductDescriptionLength: 50,
+                inShortProductDescriptionLength: page,
                 inProductsPerPage: limit,
                 inStartItem: offset
               },
@@ -121,5 +122,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   );
 
-  return Product;
+  return ProductModel;
 };

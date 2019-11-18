@@ -68,7 +68,7 @@ const SequelizeOrdersRepository = require("./infra/store/SequelizeOrdersReposito
 const {
   database,
   Customer: CustomerModel,
-  Product: ProductModel,
+  ProductModel,
   Department: DepartmentModel,
   Category: CategoryModel,
   ShippingRegion: ShippingRegionModel,

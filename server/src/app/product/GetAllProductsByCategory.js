@@ -9,6 +9,7 @@ class GetAllProductsByCategory extends Operation {
   async execute(category = 1, page = 1, limit = 10) {
     const { SUCCESS, ERROR } = this.outputs;
     try {
+      console.log('get all by category labib');
       const products = await this.productsRepository.getAllByCategy({
         page: page,
         limit: limit,

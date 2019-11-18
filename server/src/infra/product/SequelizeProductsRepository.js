@@ -6,7 +6,9 @@ class SequelizeProductsRepository {
   }
 
   async getAll(...args) {
+    console.log('getAll by semua');
     const products = await this.ProductModel.findAndCountAll(...args);
+    console.log('getAll by semua behasil');
     products.rows = products.rows.map(ProductMapper.toEntity);
     return products;
   }
@@ -30,6 +32,7 @@ class SequelizeProductsRepository {
 
   async getAllByCategy(...args) {
     let offset = (args[0].page - 1) * args[0].limit;
+    console.log('getAll by categy');
     const products = await this.ProductModel.getAllProductsByCategory(
       args[0].category,
       args[0].page,

@@ -16,6 +16,7 @@ class Operation extends EventEmitter {
 
   on(output, handler) {
     if(this.outputs[output]) {
+      console.log("event emitter")
       return this.addListener(output, handler);
     }
     throw new Error(`Invalid output "${output}" to operation ${this.constructor.name}.`);

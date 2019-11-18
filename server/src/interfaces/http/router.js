@@ -32,7 +32,7 @@ module.exports = ({
     .use(methodOverride("X-HTTP-Method-Override"))
     .use(
       cors({
-        origin: ["http://localhost:3000", "http://localhost", "https://react-ipragmatech-ecommerce.herokuapp.com"],
+        origin: ["http://localhost:3000", "http://localhost", "https://react-ipragmatech-ecommerce.herokuapp.com","http://localhost:3001",],
         credentials: true
       })
     )

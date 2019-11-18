@@ -25,7 +25,7 @@ const ProductsController = {
     router.get(
       "/findByCategory",
       inject("getAllProductsByCategory"),
-      this.getAllProductsByCategory
+      this.getProductsByCategory
     );
     router.get(
       "/:productId",
@@ -39,6 +39,7 @@ const ProductsController = {
   index(req, res, next) {
     const { getAllProducts, productSerializer } = req;
     const { SUCCESS, ERROR } = getAllProducts.outputs;
+    console.log('masuk sini 1');
     getAllProducts
       .on(SUCCESS, products => {
         const itemCount = products.count;
@@ -52,10 +53,11 @@ const ProductsController = {
           limit,
           currentPage
         };
+        console.log('masuk sini 2');
         res.status(Status.OK).json(results);
       })
       .on(ERROR, next);
-
+      console.log('masuk sini 3');
     getAllProducts.execute(req.query.page, req.query.limit);
   },
 
@@ -63,19 +65,21 @@ const ProductsController = {
     const { getProduct, productSerializer } = req;
 
     const { SUCCESS, ERROR, NOT_FOUND } = getProduct.outputs;
-
+    console.log('masuk sini 4');
     getProduct
       .on(SUCCESS, product => {
+        console.log('masuk sini 5');
         res.status(Status.OK).json(productSerializer.serialize(product));
       })
       .on(NOT_FOUND, error => {
+        console.log('masuk sini 6');
         res.status(Status.NOT_FOUND).json({
           type: "NotFoundError",
           details: error.details
         });
       })
       .on(ERROR, next);
-
+      console.log('masuk sini 7');
     getProduct.execute(Number(req.params.id));
   },
 
@@ -173,31 +177,36 @@ const ProductsController = {
     );
   },
 
-  getAllProductsByCategory(req, res, next) {
+  getProductsByCategory(req, res, next) {
     const { getAllProductsByCategory, productSerializer } = req;
     const { SUCCESS, ERROR } = getAllProductsByCategory.outputs;
-    getAllProductsByCategory
-      .on(SUCCESS, products => {
-        const itemCount = products.count;
-        const pageCount = Math.ceil(itemCount / req.query.limit);
-        const limit = req.query.limit;
-        const currentPage = req.query.page;
-        const results = {
-          products: products.rows.map(productSerializer.serialize),
-          pageCount,
-          itemCount,
-          limit,
-          currentPage
-        };
-        res.status(Status.OK).json(results);
-      })
-      .on(ERROR, next);
-    console.log("Finding Category:" + req.query.category);
+    console.log("Finding Category Labib: 0 ");
     getAllProductsByCategory.execute(
       req.query.category,
       req.query.page,
       req.query.limit
     );
+    
+    console.log("Finding Category Labib: 2" + req.query.category);
+    getAllProductsByCategory
+    .on(SUCCESS, products => {
+      const itemCount = products.count;
+      const pageCount = Math.ceil(itemCount / req.query.limit);
+      const limit = req.query.limit;
+      const currentPage = req.query.page;
+      const results = {
+        products: products.rows.map(productSerializer.serialize),
+        pageCount,
+        itemCount,
+        limit,
+        currentPage
+      };
+      console.log("Finding Category Labib: 1 ")
+      res.status(Status.OK).json(results);
+    })
+    .on(ERROR, next);
+
+    console.log("Finding Category Labib: 3");
   },
 
   getProductDetails(req, res, next) {
