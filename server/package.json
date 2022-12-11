@@ -40,7 +40,7 @@
     "email-templates": "^5.0.4",
     "email-validator": "^2.0.4",
     "eslint": "^4.7.2",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-paginate": "^1.0.0",
     "express-session": "^1.15.6",
     "express-status-monitor": "^0.1.9",
