@@ -45,7 +45,7 @@
     "express-session": "^1.15.6",
     "express-status-monitor": "^0.1.9",
     "http-status": "^1.0.1",
-    "jsonwebtoken": "^8.5.0",
+    "jsonwebtoken": "^9.0.0",
     "log4js": "^1.1.1",
     "method-override": "^2.3.7",
     "morgan": "^1.9.1",
